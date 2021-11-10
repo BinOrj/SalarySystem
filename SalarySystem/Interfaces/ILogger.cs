@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace SalarySystem.Interfaces
 {
-    interface ILogger
+    public interface ILogger
     {
+        void LogError();
+        void LogInfo();
     }
 }

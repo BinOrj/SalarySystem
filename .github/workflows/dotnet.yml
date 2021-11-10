@@ -21,11 +21,5 @@ jobs:
       run: dotnet restore 
     - name: Build 🛠️
       run: dotnet build --no-restore
-    
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
     - name: Automated test 🧪
       run: dotnet test --no-build --verbosity normal

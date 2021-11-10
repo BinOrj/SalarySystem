@@ -6,7 +6,7 @@ namespace SalarySystem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello BinÖrj!!");
+            Console.WriteLine("Hello BinÖrj!");
         }
     }
 }

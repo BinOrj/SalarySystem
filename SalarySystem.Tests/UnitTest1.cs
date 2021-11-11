@@ -11,7 +11,13 @@ namespace SalarySystem.Tests
         }
 
         [Test]
-        public void Test1()
+        public void Test1_Demo_ShouldPass()
+        {
+            Assert.Pass();
+        }
+
+        [Test]
+        public void Test2_Demo_ShouldPass()
         {
             Assert.Pass();
         }

@@ -31,12 +31,14 @@ namespace SalarySystem.Tests
 
             LoginController logIn = new();
             List<Employees> employeesList = new();
-            employeesList.Add(new Employees("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer }));
+
+            Employees test = new ("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
+            employeesList.Add(test);
 
             var employe = logIn.CheckIfEmployeExists("Test", "123", employeesList);
             var isAdmin = logIn.IsEmployeAdmin(employe);
 
-            Assert.AreEqual(employe, employe);
+            Assert.AreEqual(employe, test);
             Assert.IsTrue(isAdmin);
         }
     }

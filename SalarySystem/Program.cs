@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SalarySystem.Controllers;
+using SalarySystem.Data;
+using System;
 
 namespace SalarySystem
 { 
@@ -6,7 +8,9 @@ namespace SalarySystem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello BinÖrj!!");
+            Seeder.EmployeesSeeder();
+            LoginController logIn = new();
+            logIn.LogIn();
         }
     }
 }

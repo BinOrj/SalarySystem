@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SalarySystem.Controllers
 {
-    class UserController
+    public class UserController
     {
+        public static void UserMenu()
+        {
+            Console.WriteLine("User Menu");
+        }
     }
 }

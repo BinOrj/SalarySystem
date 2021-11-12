@@ -1,8 +1,9 @@
 ﻿using SalarySystem.Interfaces;
+using System.Collections.Generic;
 
 namespace SalarySystem.Models
 {
-    class Employees : IAccount
+    public class Employees : IAccount
     {
         public Employees()
         {
@@ -24,5 +25,8 @@ namespace SalarySystem.Models
         public string Surname { get; set; }
         public decimal Salary { get; set; }
         public Roles[] Role { get; set; }
+
+        public static List<Employees> EmployeesList { get; set; } = new();
+
     }
 }

@@ -1,28 +1,25 @@
-﻿using SalarySystem.Data;
-using SalarySystem.Models;
+﻿using SalarySystem.Models;
 using SalarySystem.Utilities;
 using System;
 
 namespace SalarySystem.Controllers
 {
-    public class AdminController
+    public class EmployeeController
     {
-        public void AdminMenu(Employees employee)
+        public void UserMenu(Employees employee)
         {
             EmployeeHelper helper = new();
             bool loop = true;
+
             while (loop)
             {
                 Console.Clear();
                 Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Show info about all employees");
-                Console.WriteLine("3. Add employee");
-                Console.WriteLine("4. Delete employee");
-                Console.WriteLine("5. Logout");
+                Console.WriteLine("2. Delete this user");
+                Console.WriteLine("3. Logout");
                 Console.Write("Choice: ");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine();
-
                 switch (choice)
                 {
                     case 1:
@@ -30,16 +27,10 @@ namespace SalarySystem.Controllers
                         break;
 
                     case 2:
-                        helper.ShowListOfEmployees(DataStructure.EmployeesList);
+                        helper.DeleteMyAccount(employee);
                         break;
 
                     case 3:
-                        helper.AddNewEmployee(DataStructure.EmployeesList);
-                        break;
-                    case 4:
-                        helper.DeleteEmployeesAccount(DataStructure.EmployeesList);
-                        break;
-                    case 5:
                         Console.WriteLine("Logging out");
                         loop = false;
                         break;

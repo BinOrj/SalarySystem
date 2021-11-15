@@ -1,44 +1,24 @@
-﻿using SalarySystem.Models;
+﻿using SalarySystem.Data;
+using SalarySystem.Models;
+using SalarySystem.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SalarySystem.Controllers
 {
     public class LoginController
     {
-        public void LogIn()
+        public void LogIn(Employees employee)
         {
+            EmployeeHelper helper = new();
+            Console.WriteLine("Enter Username and Password to login\n");
             Console.Write("Enter username: ");
             string username = Console.ReadLine();
             Console.Write("Enter Password: ");
             string password = Console.ReadLine();
 
-            var employe = CheckIfEmployeExists(username, password, Employees.EmployeesList);
-            var isAdmin = IsEmployeAdmin(employe);
-            MenuDirection(isAdmin);
-        }
-
-        public Employees CheckIfEmployeExists(string username, string password, List<Employees> list)
-        {
-            foreach (Employees employe in list)
-            {
-                if (username == employe.UserName && password == employe.Password) return employe;
-            }
-            return null;
-        }
-
-        public bool IsEmployeAdmin(Employees employe)
-        {
-            return employe.Role.Contains(Roles.Admin);
-        }
-
-        public void MenuDirection(bool isAdmin)
-        {
-            if (isAdmin) AdminController.AdminMenu();
-            else UserController.UserMenu();
+            employee = helper.CheckIfEmployeExists(username, password, DataStructure.EmployeesList);
+            var isAdmin = helper.IsEmployeAdmin(employee);
+            helper.MenuDirection(isAdmin, employee);
         }
     }
 }

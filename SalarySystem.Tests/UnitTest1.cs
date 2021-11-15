@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestPlatform.TestHost;
 using NUnit.Framework;
 using SalarySystem.Controllers;
 using SalarySystem.Models;
+using SalarySystem.Utilities;
 using System.Collections.Generic;
 
 namespace SalarySystem.Tests
@@ -29,13 +30,13 @@ namespace SalarySystem.Tests
         public void Test3_Demo_CheckIfEmployeExists()
         {
 
-            LoginController logIn = new();
+            EmployeeHelper helper = new();
             List<Employees> employeesList = new();
 
             Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
             employeesList.Add(testEmploye);
 
-            var existingEmploye = logIn.CheckIfEmployeExists("Test", "123", employeesList);
+            var existingEmploye = helper.CheckIfEmployeExists("Test", "123", employeesList);
 
             Assert.AreEqual(existingEmploye, testEmploye);
         }
@@ -44,29 +45,44 @@ namespace SalarySystem.Tests
         public void Test4_Demo_IsEmployeAdmin()
         {
 
-            LoginController logIn = new();
+            EmployeeHelper helper = new();
             List<Employees> employeesList = new();
 
             Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
             employeesList.Add(testEmploye);
 
-            var isAdmin = logIn.IsEmployeAdmin(testEmploye);
+            var isAdmin = helper.IsEmployeAdmin(testEmploye);
 
             Assert.IsTrue(isAdmin);
+        }
+
+        [Test]
+        public void Test4_Demo_GetRoles()
+        {
+
+            EmployeeHelper helper = new();
+            List<Employees> employeesList = new();
+
+            Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
+            employeesList.Add(testEmploye);
+
+            var result = helper.GetRoles(testEmploye);
+
+            Assert.AreEqual("Admin Programmer ", result);
         }
 
         [Test]
         public void Test5_Demo_Intergration_LogIn()
         {
 
-            LoginController logIn = new();
+            EmployeeHelper helper = new();
             List<Employees> employeesList = new();
 
             Employees testEmploye = new ("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
             employeesList.Add(testEmploye);
 
-            var existingEmploye = logIn.CheckIfEmployeExists("Test", "123", employeesList);
-            var isAdmin = logIn.IsEmployeAdmin(existingEmploye);
+            var existingEmploye = helper.CheckIfEmployeExists("Test", "123", employeesList);
+            var isAdmin = helper.IsEmployeAdmin(existingEmploye);
 
             Assert.AreEqual(existingEmploye, testEmploye);
             Assert.IsTrue(isAdmin);

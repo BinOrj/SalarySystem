@@ -6,7 +6,7 @@ namespace SalarySystem.Controllers
 {
     public class EmployeeController
     {
-        public void UserMenu(Employees employee)
+        public void EmployeeMenu(Employees employee)
         {
             EmployeeHelper helper = new();
             bool loop = true;

@@ -94,7 +94,7 @@ namespace SalarySystem.Utilities
             AdminController adminController = new();
 
             if (isAdmin) adminController.AdminMenu(employee);
-            else userController.UserMenu(employee);
+            else userController.EmployeeMenu(employee);
         }
 
         public void ShowInfoAboutThisEmployee(Employees employee)

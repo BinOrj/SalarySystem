@@ -20,35 +20,43 @@ namespace SalarySystem.Controllers
                 Console.WriteLine("4. Delete employee");
                 Console.WriteLine("5. Logout");
                 Console.Write("Choice: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine();
-
-                switch (choice)
+                string input = Console.ReadLine();
+                if(int.TryParse(input, out int choice))
                 {
-                    case 1:
-                        helper.ShowInfoAboutThisEmployee(employee);
-                        break;
+                    switch (choice)
+                    {
+                        case 1:
+                            helper.ShowInfoAboutThisEmployee(employee);
+                            break;
 
-                    case 2:
-                        helper.ShowListOfEmployees(DataStructure.EmployeesList);
-                        break;
+                        case 2:
+                            helper.ShowListOfEmployees(DataStructure.EmployeesList);
+                            break;
 
-                    case 3:
-                        helper.AddNewEmployee(DataStructure.EmployeesList);
-                        break;
-                    case 4:
-                        helper.DeleteEmployeesAccount(DataStructure.EmployeesList);
-                        break;
-                    case 5:
-                        Console.WriteLine("Logging out");
-                        loop = false;
-                        break;
+                        case 3:
+                            helper.AddNewEmployee(DataStructure.EmployeesList);
+                            break;
+                        case 4:
+                            helper.DeleteEmployeesAccount(DataStructure.EmployeesList);
+                            break;
+                        case 5:
+                            Console.WriteLine("Logging out");
+                            loop = false;
+                            break;
 
-                    default:
-                        Console.WriteLine("Wrong input");
-                        break;
+                        default:
+                            Console.WriteLine("The input needs to match one of the menu choices!");
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input!");
+                   
                 }
                 Console.ReadKey();
+
             }
         }
     }

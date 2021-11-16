@@ -28,7 +28,7 @@ namespace SalarySystem.Controllers
                             break;
 
                         case 2:
-                            helper.DeleteMyAccount(employee);
+                            if (helper.DeleteMyAccount(employee)){ loop = false;}
                             break;
 
                         case 3:

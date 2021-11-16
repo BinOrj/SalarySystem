@@ -51,8 +51,9 @@ namespace SalarySystem.Utilities
             }
         }
 
-        public void DeleteMyAccount(Employees employee)
+        public bool DeleteMyAccount(Employees employee)
         {
+            Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
             Console.WriteLine("Enter username and password to delete this user");
             Console.Write("Enter username: ");
             string username = Console.ReadLine();
@@ -61,11 +62,14 @@ namespace SalarySystem.Utilities
 
             if (username == employee.UserName && password == employee.Password)
             {
+                Console.WriteLine($"{employee.UserName} is deleted!");
                 DataStructure.EmployeesList.Remove(employee);
+                return true;
             }
             else
             {
                 Console.WriteLine("Wrong Username or Password!");
+                return false;
             }
         }
 
@@ -121,11 +125,21 @@ namespace SalarySystem.Utilities
             string surname = Console.ReadLine();
             Console.Write("Enter salary: ");
             decimal salary = Convert.ToDecimal(Console.ReadLine());
-            Console.Write("Enter roles");
+     
             Roles[] roles = { Roles.Programmer};
 
             Employees employee = new(username, password, firstname, surname, salary, roles);
             list.Add(employee);
+        }
+
+        public void ListOfRoles()
+        {
+            int counter = 1;
+            foreach (var role in Enum.GetNames(typeof(Roles)))
+            {
+                Console.WriteLine($"{counter}. {role}");
+                counter++;
+            }
         }
     }
 }

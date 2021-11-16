@@ -22,7 +22,8 @@ jobs:
     - name: Build 🛠️
       run: dotnet build --no-restore
     - name: Automated test 🧪
-    
+      run: dotnet test --no-build --verbosity normal
+      
   DeployToDevelop:
  
     name: TestEnvironment

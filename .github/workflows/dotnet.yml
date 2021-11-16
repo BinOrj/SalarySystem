@@ -26,11 +26,11 @@ jobs:
 
   DeployToDevelop:
  
-    name: Deploy
+    name: TestEnvironment
     needs: build   
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    environment: TestEnvironment
+    environment: Staging
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -46,7 +46,7 @@ jobs:
     needs: build
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    environment: Staging
+    environment: Production
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -54,4 +54,4 @@ jobs:
       with:
         dotnet-version: 5.0.x     
     - name: Deploy to develop 🚀
-      run: dotnet publish --configuration Release 
+      run: dotnet publish --configuration Release

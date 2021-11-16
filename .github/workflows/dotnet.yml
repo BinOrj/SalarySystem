@@ -27,8 +27,7 @@ jobs:
   DeployToDevelop:
  
     name: Deploy
-    needs: build
-    if: github.event.name == 'push'
+    needs: build   
     runs-on: ubuntu-latest
     environment: TestEnvironment
     steps:

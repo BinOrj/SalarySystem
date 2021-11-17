@@ -9,6 +9,7 @@ namespace SalarySystem.Interfaces
         public string Firstname { get; set; }
         public string Surname { get; set; }
         public decimal Salary { get; set; }
-        public Roles[] Role { get; set; }
+        public string Role { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace SalarySystem.Models
         {
         }
 
-        public Employees(string userName, string password, string firstname, string surname, decimal salary, Roles[] role)
+        public Employees(string userName, string password, string firstname, string surname, decimal salary, string role, bool isAdmin)
         {
             UserName = userName;
             Password = password;
@@ -16,6 +16,7 @@ namespace SalarySystem.Models
             Surname = surname;
             Salary = salary;
             Role = role;
+            IsAdmin = isAdmin;
         }
 
         public string UserName { get; set; }
@@ -23,6 +24,7 @@ namespace SalarySystem.Models
         public string Firstname { get; set; }
         public string Surname { get; set; }
         public decimal Salary { get; set; }
-        public Roles[] Role { get; set; }
+        public string Role { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

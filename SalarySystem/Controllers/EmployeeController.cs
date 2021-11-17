@@ -1,4 +1,5 @@
-﻿using SalarySystem.Models;
+﻿using SalarySystem.Data;
+using SalarySystem.Models;
 using SalarySystem.Utilities;
 using System;
 
@@ -28,7 +29,7 @@ namespace SalarySystem.Controllers
                             break;
 
                         case 2:
-                            if (helper.DeleteMyAccount(employee)){ loop = false;}
+                            if (helper.DeleteMyAccount(employee, DataStructure.EmployeesList)){ loop = false;}
                             break;
 
                         case 3:

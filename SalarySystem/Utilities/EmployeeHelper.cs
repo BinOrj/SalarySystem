@@ -67,6 +67,11 @@ namespace SalarySystem.Utilities
             var username = EnterUsername();
             var password = EnterPassword();
 
+            return DeleteAccount(username, password, employee, list);
+        }
+
+        public bool DeleteAccount(string username, string password, Employees employee, List<Employees> list)
+        {
             if (username == employee.UserName && password == employee.Password)
             {
                 Console.WriteLine($"{employee.UserName} is deleted!");

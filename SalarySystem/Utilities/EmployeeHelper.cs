@@ -70,10 +70,13 @@ namespace SalarySystem.Utilities
             var employee = EmployeeToDelete(list);
 
             DeleteInfo(employee);
-            var username = EnterUsername();
-            var password = EnterPassword();
 
-            if (username == employee.UserName && password == employee.Password)
+            //TODO: Kolla alternativ
+            //var username = EnterUsername();
+            //var password = EnterPassword();
+            var credentials = AskForCredentials();
+
+            if (credentials[0] == employee.UserName && credentials[1] == employee.Password)
             {
                 if (IsEmployeAdmin(employee))
                 {
@@ -94,10 +97,13 @@ namespace SalarySystem.Utilities
         public bool DeleteMyAccount(Employees employee, List<Employees> list)
         {
             DeleteInfo(employee);
-            var username = EnterUsername();
-            var password = EnterPassword();
+            //TODO: Kolla alternativ
+            // Måste vara eniga
+            //var username = EnterUsername();
+            //var password = EnterPassword();
+            var credentials = AskForCredentials();
 
-            return DeleteAccount(username, password, employee, list);
+            return DeleteAccount(credentials[0], credentials[1], employee, list);
         }
 
         public bool IsEmployeAdmin(Employees employe)

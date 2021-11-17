@@ -53,7 +53,8 @@ namespace SalarySystem.Utilities
         public static decimal EnterSalary()
         {
             Console.Write("Enter salary: ");
-            return Convert.ToDecimal(Console.ReadLine());
+            var sucees = decimal.TryParse(Console.ReadLine(),out decimal salary);
+            return sucees ? salary : EnterSalary();
         }
 
         public static string EnterSurname()

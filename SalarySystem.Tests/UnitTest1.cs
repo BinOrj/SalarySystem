@@ -33,7 +33,7 @@ namespace SalarySystem.Tests
             EmployeeHelper helper = new();
             List<Employees> employeesList = new();
 
-            Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
+            Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
             employeesList.Add(testEmploye);
 
             var existingEmploye = helper.CheckIfEmployeExists("Test", "123", employeesList);
@@ -48,27 +48,12 @@ namespace SalarySystem.Tests
             EmployeeHelper helper = new();
             List<Employees> employeesList = new();
 
-            Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
+            Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
             employeesList.Add(testEmploye);
 
             var isAdmin = helper.IsEmployeAdmin(testEmploye);
 
             Assert.IsTrue(isAdmin);
-        }
-
-        [Test]
-        public void Test4_Demo_GetRoles()
-        {
-
-            EmployeeHelper helper = new();
-            List<Employees> employeesList = new();
-
-            Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
-            employeesList.Add(testEmploye);
-
-            var result = helper.GetRoles(testEmploye);
-
-            Assert.AreEqual("Admin Programmer ", result);
         }
 
         [Test]
@@ -78,7 +63,7 @@ namespace SalarySystem.Tests
             EmployeeHelper helper = new();
             List<Employees> employeesList = new();
 
-            Employees testEmploye = new ("Test", "123", "Emil", "Örjes", 30000, new Roles[] { Roles.Admin, Roles.Programmer });
+            Employees testEmploye = new ("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
             employeesList.Add(testEmploye);
 
             var existingEmploye = helper.CheckIfEmployeExists("Test", "123", employeesList);

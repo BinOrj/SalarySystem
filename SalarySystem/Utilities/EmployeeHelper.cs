@@ -73,19 +73,10 @@ namespace SalarySystem.Utilities
             }
         }
 
-        public string GetRoles(Employees employee)
-        {
-            StringBuilder roles = new();
-            foreach (Roles role in employee.Role)
-            {
-                roles.Append(role).Append(' ');
-            }
-            return roles.ToString();
-        }
 
         public bool IsEmployeAdmin(Employees employe)
         {
-            return employe.Role.Contains(Roles.Admin);
+            return employe.IsAdmin;
         }
 
         public void MenuDirection(bool isAdmin, Employees employee)
@@ -100,7 +91,7 @@ namespace SalarySystem.Utilities
         public void ShowInfoAboutThisEmployee(Employees employee)
         {
             Console.WriteLine($"Name: {employee.Firstname} {employee.Surname}");
-            Console.WriteLine($"Role: {GetRoles(employee)}");
+            Console.WriteLine($"Role: {employee.Role}");
             Console.WriteLine($"Salary: {employee.Salary}");
         }
         public void ShowListOfEmployees(List<Employees> list)
@@ -126,9 +117,10 @@ namespace SalarySystem.Utilities
             Console.Write("Enter salary: ");
             decimal salary = Convert.ToDecimal(Console.ReadLine());
      
-            Roles[] roles = { Roles.Programmer};
+            string roles = Roles.Programmer.ToString();
+            bool isAdmin = false;
 
-            Employees employee = new(username, password, firstname, surname, salary, roles);
+            Employees employee = new(username, password, firstname, surname, salary, roles, isAdmin);
             list.Add(employee);
         }
 

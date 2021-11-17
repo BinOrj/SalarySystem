@@ -18,7 +18,7 @@ namespace SalarySystem.Utilities
             var salary = EnterSalary();
             var role = EnterRole().ToString();
             var isAdmin = EnterIfAdminOrNot();
-            
+
             Employees employee = new(username, password, firstname, surname, salary, role, isAdmin);
             list.Add(employee);
             Console.WriteLine($"New employee with username {username} is added!");
@@ -61,13 +61,7 @@ namespace SalarySystem.Utilities
             }
         }
 
-        public void DeleteInfo(Employees employee)
-        {
-            Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
-            Console.WriteLine("Enter username and password to delete this user");
-        }
-
-        public bool DeleteMyAccount(Employees employee)
+        public bool DeleteMyAccount(Employees employee, List<Employees> list)
         {
             DeleteInfo(employee);
             var username = EnterUsername();
@@ -76,7 +70,7 @@ namespace SalarySystem.Utilities
             if (username == employee.UserName && password == employee.Password)
             {
                 Console.WriteLine($"{employee.UserName} is deleted!");
-                DataStructure.EmployeesList.Remove(employee);
+                list.Remove(employee);
                 return true;
             }
             else
@@ -86,96 +80,9 @@ namespace SalarySystem.Utilities
             }
         }
 
-        public Employees EmployeeToDelete(List<Employees> list)
-        {
-            int choice = Convert.ToInt32(Console.ReadLine());
-            return list[choice - 1];
-        }
-
-
-
-
-
-
-
-
-
-
-        public string EnterFirstName()
-        {
-            Console.Write("Enter firstname: ");
-            return Console.ReadLine();
-        }
-
-        public bool EnterIfAdminOrNot()
-        {
-            Console.Write("Enter [admin] if admin. Otherwise press enter: ");
-            string input = Console.ReadLine();
-            if (input == "admin")
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public string EnterPassword()
-        {
-            Console.Write("Enter Password: ");
-            return Console.ReadLine();
-        }
-
-        public decimal EnterSalary()
-        {
-            Console.Write("Enter salary: ");
-            return Convert.ToDecimal(Console.ReadLine());
-        }
-
-        public string EnterSurname()
-        {
-            Console.Write("Enter surname: ");
-            return Console.ReadLine();
-        }
-
-        public string EnterUsername()
-        {
-            Console.Write("Enter username: ");
-            return Console.ReadLine();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public Roles EnterRole()
-        {
-            ListOfRoles();
-            Console.Write("Enter the number of the role: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-
-
-            return (Roles)choice - 1;
-        }
         public bool IsEmployeAdmin(Employees employe)
         {
             return employe.IsAdmin;
-        }
-
-        public void ListOfRoles()
-        {
-            int counter = 1;
-            foreach (var role in Enum.GetNames(typeof(Roles)))
-            {
-                Console.WriteLine($"{counter}. {role}");
-                counter++;
-            }
         }
 
         public void MenuDirection(bool isAdmin, Employees employee)
@@ -200,6 +107,76 @@ namespace SalarySystem.Utilities
             foreach (Employees employee in list)
             {
                 Console.WriteLine($"{counter}. Name: {employee.Firstname} {employee.Surname}   Username: {employee.UserName}   Password: {employee.Password}");
+                counter++;
+            }
+        }
+
+        private void DeleteInfo(Employees employee)
+        {
+            Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
+            Console.WriteLine("Enter username and password to delete this user");
+        }
+        private Employees EmployeeToDelete(List<Employees> list)
+        {
+            int choice = Convert.ToInt32(Console.ReadLine());
+            return list[choice - 1];
+        }
+
+        private string EnterFirstName()
+        {
+            Console.Write("Enter firstname: ");
+            return Console.ReadLine();
+        }
+
+        private bool EnterIfAdminOrNot()
+        {
+            Console.Write("Enter [admin] if admin. Otherwise press enter: ");
+            string input = Console.ReadLine();
+            if (input == "admin")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private string EnterPassword()
+        {
+            Console.Write("Enter Password: ");
+            return Console.ReadLine();
+        }
+
+        private Roles EnterRole()
+        {
+            ListOfRoles();
+            Console.Write("Enter the number of the role: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            return (Roles)choice - 1;
+        }
+
+        private decimal EnterSalary()
+        {
+            Console.Write("Enter salary: ");
+            return Convert.ToDecimal(Console.ReadLine());
+        }
+
+        private string EnterSurname()
+        {
+            Console.Write("Enter surname: ");
+            return Console.ReadLine();
+        }
+
+        private string EnterUsername()
+        {
+            Console.Write("Enter username: ");
+            return Console.ReadLine();
+        }
+        private void ListOfRoles()
+        {
+            int counter = 1;
+            foreach (var role in Enum.GetNames(typeof(Roles)))
+            {
+                Console.WriteLine($"{counter}. {role}");
                 counter++;
             }
         }

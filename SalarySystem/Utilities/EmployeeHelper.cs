@@ -1,5 +1,4 @@
 ﻿using SalarySystem.Controllers;
-using SalarySystem.Data;
 using SalarySystem.Models;
 using System;
 using System.Collections.Generic;
@@ -19,6 +18,11 @@ namespace SalarySystem.Utilities
             var role = EnterRole().ToString();
             var isAdmin = EnterIfAdminOrNot();
 
+            AddingNewEmployee(username, password, firstname, surname, salary, role, isAdmin, list);
+        }
+
+        public void AddingNewEmployee(string username, string password, string firstname, string surname, decimal salary, string role, bool isAdmin, List<Employees> list)
+        {
             Employees employee = new(username, password, firstname, surname, salary, role, isAdmin);
             list.Add(employee);
             Console.WriteLine($"New employee with username {username} is added!");
@@ -31,6 +35,21 @@ namespace SalarySystem.Utilities
                 if (username == employe.UserName && password == employe.Password) return employe;
             }
             return null;
+        }
+
+        public bool DeleteAccount(string username, string password, Employees employee, List<Employees> list)
+        {
+            if (username == employee.UserName && password == employee.Password)
+            {
+                Console.WriteLine($"{employee.UserName} is deleted!");
+                list.Remove(employee);
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Wrong Username or Password!");
+                return false;
+            }
         }
 
         public void DeleteEmployeesAccount(List<Employees> list)
@@ -69,22 +88,6 @@ namespace SalarySystem.Utilities
 
             return DeleteAccount(username, password, employee, list);
         }
-
-        public bool DeleteAccount(string username, string password, Employees employee, List<Employees> list)
-        {
-            if (username == employee.UserName && password == employee.Password)
-            {
-                Console.WriteLine($"{employee.UserName} is deleted!");
-                list.Remove(employee);
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("Wrong Username or Password!");
-                return false;
-            }
-        }
-
         public bool IsEmployeAdmin(Employees employe)
         {
             return employe.IsAdmin;
@@ -116,11 +119,26 @@ namespace SalarySystem.Utilities
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void DeleteInfo(Employees employee)
         {
             Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
             Console.WriteLine("Enter username and password to delete this user");
         }
+
         private Employees EmployeeToDelete(List<Employees> list)
         {
             int choice = Convert.ToInt32(Console.ReadLine());
@@ -176,6 +194,7 @@ namespace SalarySystem.Utilities
             Console.Write("Enter username: ");
             return Console.ReadLine();
         }
+
         private void ListOfRoles()
         {
             int counter = 1;

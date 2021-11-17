@@ -10,17 +10,18 @@ namespace SalarySystem.Utilities
     {
         public void AddNewEmployee(List<Employees> list)
         {
+            Console.WriteLine("Enter info to add a new employee\n");
             var username = EnterUsername();
             var password = EnterPassword();
             var firstname = EnterFirstName();
             var surname = EnterSurname();
             var salary = EnterSalary();
-
-            string roles = Roles.Programmer.ToString();
-            bool isAdmin = false;
-
-            Employees employee = new(username, password, firstname, surname, salary, roles, isAdmin);
+            var role = EnterRole().ToString();
+            var isAdmin = EnterIfAdminOrNot();
+            
+            Employees employee = new(username, password, firstname, surname, salary, role, isAdmin);
             list.Add(employee);
+            Console.WriteLine($"New employee with username {username} is added!");
         }
 
         public Employees CheckIfEmployeExists(string username, string password, List<Employees> list)
@@ -36,8 +37,7 @@ namespace SalarySystem.Utilities
         {
             ShowListOfEmployees(list);
             Console.Write("Enter number of wich employee you want to delete: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            var employee = list[choice - 1];
+            var employee = EmployeeToDelete(list);
 
             DeleteInfo(employee);
             var username = EnterUsername();
@@ -86,9 +86,53 @@ namespace SalarySystem.Utilities
             }
         }
 
+        public Employees EmployeeToDelete(List<Employees> list)
+        {
+            int choice = Convert.ToInt32(Console.ReadLine());
+            return list[choice - 1];
+        }
+
+
+
+
+
+
+
+
+
+
+        public string EnterFirstName()
+        {
+            Console.Write("Enter firstname: ");
+            return Console.ReadLine();
+        }
+
+        public bool EnterIfAdminOrNot()
+        {
+            Console.Write("Enter [admin] if admin. Otherwise press enter: ");
+            string input = Console.ReadLine();
+            if (input == "admin")
+            {
+                return true;
+            }
+            return false;
+        }
+
         public string EnterPassword()
         {
             Console.Write("Enter Password: ");
+            return Console.ReadLine();
+        }
+
+        public decimal EnterSalary()
+        {
+            Console.Write("Enter salary: ");
+            return Convert.ToDecimal(Console.ReadLine());
+        }
+
+        public string EnterSurname()
+        {
+            Console.Write("Enter surname: ");
             return Console.ReadLine();
         }
 
@@ -98,22 +142,26 @@ namespace SalarySystem.Utilities
             return Console.ReadLine();
         }
 
-        public string EnterFirstName()
-        {
-            Console.Write("Enter firstname: ");
-            return Console.ReadLine();
-        }
 
-        public string EnterSurname()
-        {
-            Console.Write("Enter surname: ");
-            return Console.ReadLine();
-        }
 
-        public decimal EnterSalary()
+
+
+
+
+
+
+
+
+
+
+        public Roles EnterRole()
         {
-            Console.Write("Enter salary: ");
-            return Convert.ToDecimal(Console.ReadLine());
+            ListOfRoles();
+            Console.Write("Enter the number of the role: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+
+            return (Roles)choice - 1;
         }
         public bool IsEmployeAdmin(Employees employe)
         {

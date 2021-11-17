@@ -15,9 +15,13 @@ namespace SalarySystem.Tests
         }
 
         [Test]
-        public void Test1_Demo_ShouldPass()
+        public void Test1_Demo_AddingNewEmployee()
         {
-            Assert.Pass();
+            EmployeeHelper helper = new();
+            List<Employees> employeesList = new();
+            var actual = helper.AddingNewEmployee("Apa", "123", "Donkey", "Kong", 25000, Roles.Tester.ToString(), false, employeesList);
+
+            Assert.IsTrue(actual);
         }
 
         [Test]

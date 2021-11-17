@@ -7,6 +7,22 @@ namespace SalarySystem.Utilities
 {
     public class EmployeeHelper
     {
+        public bool AddingNewEmployee(string username, string password, string firstname, string surname, decimal salary, string role, bool isAdmin, List<Employees> list)
+        {
+            try
+            {
+                Employees employee = new(username, password, firstname, surname, salary, role, isAdmin);
+                list.Add(employee);
+                Console.WriteLine($"New employee with username {username} is added!");
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Somyhing went wrong" + e.Message);
+                return false;
+            }
+        }
+
         public void AddNewEmployee(List<Employees> list)
         {
             Console.WriteLine("Enter info to add a new employee\n");
@@ -20,24 +36,6 @@ namespace SalarySystem.Utilities
 
             AddingNewEmployee(username, password, firstname, surname, salary, role, isAdmin, list);
         }
-
-        public bool AddingNewEmployee(string username, string password, string firstname, string surname, decimal salary, string role, bool isAdmin, List<Employees> list)
-        {
-            try
-            {
-                Employees employee = new(username, password, firstname, surname, salary, role, isAdmin);
-                list.Add(employee);
-                Console.WriteLine($"New employee with username {username} is added!");
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Somyhing went wrong" + e.Message);
-                throw;
-            }
-            
-        }
-
         public Employees CheckIfEmployeExists(string username, string password, List<Employees> list)
         {
             foreach (Employees employe in list)
@@ -98,6 +96,7 @@ namespace SalarySystem.Utilities
 
             return DeleteAccount(username, password, employee, list);
         }
+
         public bool IsEmployeAdmin(Employees employe)
         {
             return employe.IsAdmin;
@@ -128,6 +127,10 @@ namespace SalarySystem.Utilities
                 counter++;
             }
         }
+
+
+
+
 
 
 

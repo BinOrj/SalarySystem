@@ -7,7 +7,7 @@ namespace SalarySystem.Controllers
 {
     public class LoginController
     {
-        public void LogIn(Employees employee)
+        public void LogIn()
         {
             EmployeeHelper helper = new();
             Console.WriteLine("Enter Username and Password to login\n");
@@ -16,7 +16,7 @@ namespace SalarySystem.Controllers
             Console.Write("Enter Password: ");
             string password = Console.ReadLine();
 
-            employee = helper.CheckIfEmployeExists(username, password, DataStructure.EmployeesList);
+            var employee = helper.CheckIfEmployeExists(username, password, DataStructure.EmployeesList);
             var isAdmin = helper.IsEmployeAdmin(employee);
             helper.MenuDirection(isAdmin, employee);
         }

@@ -21,11 +21,21 @@ namespace SalarySystem.Utilities
             AddingNewEmployee(username, password, firstname, surname, salary, role, isAdmin, list);
         }
 
-        public void AddingNewEmployee(string username, string password, string firstname, string surname, decimal salary, string role, bool isAdmin, List<Employees> list)
+        public bool AddingNewEmployee(string username, string password, string firstname, string surname, decimal salary, string role, bool isAdmin, List<Employees> list)
         {
-            Employees employee = new(username, password, firstname, surname, salary, role, isAdmin);
-            list.Add(employee);
-            Console.WriteLine($"New employee with username {username} is added!");
+            try
+            {
+                Employees employee = new(username, password, firstname, surname, salary, role, isAdmin);
+                list.Add(employee);
+                Console.WriteLine($"New employee with username {username} is added!");
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Somyhing went wrong" + e.Message);
+                throw;
+            }
+            
         }
 
         public Employees CheckIfEmployeExists(string username, string password, List<Employees> list)

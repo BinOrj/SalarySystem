@@ -6,6 +6,5 @@
         Tester,
         HR,
         CEO,
-        Admin
     }
 }

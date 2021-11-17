@@ -2,6 +2,7 @@
 using SalarySystem.Models;
 using System;
 using System.Collections.Generic;
+using static SalarySystem.Utilities.InputHelper;
 
 namespace SalarySystem.Utilities
 {
@@ -36,6 +37,8 @@ namespace SalarySystem.Utilities
 
             AddingNewEmployee(username, password, firstname, surname, salary, role, isAdmin, list);
         }
+
+
         public Employees CheckIfEmployeExists(string username, string password, List<Employees> list)
         {
             foreach (Employees employe in list)
@@ -124,96 +127,6 @@ namespace SalarySystem.Utilities
             foreach (Employees employee in list)
             {
                 Console.WriteLine($"{counter}. Name: {employee.Firstname} {employee.Surname}   Username: {employee.UserName}   Password: {employee.Password}");
-                counter++;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private void DeleteInfo(Employees employee)
-        {
-            Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
-            Console.WriteLine("Enter username and password to delete this user");
-        }
-
-        private Employees EmployeeToDelete(List<Employees> list)
-        {
-            int choice = Convert.ToInt32(Console.ReadLine());
-            return list[choice - 1];
-        }
-
-        private string EnterFirstName()
-        {
-            Console.Write("Enter firstname: ");
-            return Console.ReadLine();
-        }
-
-        private bool EnterIfAdminOrNot()
-        {
-            Console.Write("Enter [admin] if admin. Otherwise press enter: ");
-            string input = Console.ReadLine();
-            if (input == "admin")
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private string EnterPassword()
-        {
-            Console.Write("Enter Password: ");
-            return Console.ReadLine();
-        }
-
-        private Roles EnterRole()
-        {
-            ListOfRoles();
-            Console.Write("Enter the number of the role: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-
-            return (Roles)choice - 1;
-        }
-
-        private decimal EnterSalary()
-        {
-            Console.Write("Enter salary: ");
-            return Convert.ToDecimal(Console.ReadLine());
-        }
-
-        private string EnterSurname()
-        {
-            Console.Write("Enter surname: ");
-            return Console.ReadLine();
-        }
-
-        private string EnterUsername()
-        {
-            Console.Write("Enter username: ");
-            return Console.ReadLine();
-        }
-
-        private void ListOfRoles()
-        {
-            int counter = 1;
-            foreach (var role in Enum.GetNames(typeof(Roles)))
-            {
-                Console.WriteLine($"{counter}. {role}");
                 counter++;
             }
         }

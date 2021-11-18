@@ -25,12 +25,22 @@ namespace SalarySystem.Tests
         }
 
         [Test]
-        public void Intergration_LogIn_Log()
+        public void Intergration_LogIn_Admin()
         {
             Assert.AreEqual(2, _empList.Count);
             Assert.AreEqual(_empHelper.CheckIfEmployeExists("Admin", "123", _empList), _admin);
             Assert.IsTrue(_empHelper.DeleteAccount("User", "123", _user, _empList));
             Assert.IsFalse(_empHelper.DeleteAccount("User", "123", _admin, _empList));
+            Assert.AreEqual(1, _empList.Count);
+        }
+
+        [Test]
+        public void Intergration_LogIn_User()
+        {
+            Assert.AreEqual(2, _empList.Count);
+            Assert.AreEqual(_empHelper.CheckIfEmployeExists("User", "123", _empList), _user);
+            Assert.IsFalse(_empHelper.DeleteAccount("User", "133", _user, _empList));
+            Assert.IsTrue(_empHelper.DeleteAccount("User", "123", _user, _empList));
             Assert.AreEqual(1, _empList.Count);
         }
     }

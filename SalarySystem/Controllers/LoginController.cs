@@ -14,8 +14,11 @@ namespace SalarySystem.Controllers
             var credentials = InputHelper.AskForCredentials();
 
             var employee = helper.CheckIfEmployeExists(credentials[0], credentials[1], DataStructure.EmployeesList);
-            var isAdmin = helper.IsEmployeAdmin(employee);
-            helper.MenuDirection(isAdmin, employee);
+            if (employee != null)
+            {
+                var isAdmin = helper.IsEmployeAdmin(employee);
+                helper.MenuDirection(isAdmin, employee);
+            }
         }
     }
 }

@@ -3,7 +3,6 @@ using SalarySystem.Models;
 using SalarySystem.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 namespace SalarySystem.Tests
@@ -28,6 +27,7 @@ namespace SalarySystem.Tests
             string[] get = InputHelper.AskForCredentials();
             //Assert
             Assert.AreEqual(get.Length,2);
+            Assert.AreEqual(get[0], "Yes");           
         }
 
         [Test]

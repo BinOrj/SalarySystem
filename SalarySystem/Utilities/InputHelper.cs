@@ -51,7 +51,7 @@ namespace SalarySystem.Utilities
 
             return (Roles)choice - 1;
         }
-
+        
         public static decimal EnterSalary()
         {
             Console.Write("Enter salary: ");

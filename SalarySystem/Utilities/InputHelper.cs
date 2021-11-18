@@ -86,7 +86,7 @@ namespace SalarySystem.Utilities
             var creds = new string[2];
             for (int i = 0; i <= 1; i++)
             {
-                Console.WriteLine(i == 0 ? "Enter Username: " : "Enter Password: ");
+                Console.Write(i == 0 ? "Enter Username: " : "Enter Password: ");
                 creds[i] = Console.ReadLine();
             }
             return creds;

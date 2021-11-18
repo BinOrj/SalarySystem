@@ -124,7 +124,7 @@ namespace SalarySystem.Utilities
             int counter = 1;
             foreach (Employees employee in list)
             {
-                Console.WriteLine($"{counter}. Name: {employee.Firstname} {employee.Surname}   Username: {employee.UserName}   Password: {employee.Password}");
+                Console.WriteLine($"{counter}" + employee.GetUserInfo());
                 counter++;
             }
         }

@@ -84,12 +84,12 @@ namespace SalarySystem.Utilities
         public static string[] AskForCredentials()
         {
             var creds = new string[2];
-            for (int i = 0; i <= 1; i++) 
+            for (int i = 0; i <= 1; i++)
             {
-                Console.WriteLine( i == 0 ? "Enter Username: " : "Enter Password: ");
+                Console.WriteLine(i == 0 ? "Enter Username: " : "Enter Password: ");
                 creds[i] = Console.ReadLine();
             }
-           return creds;
+            return creds;
         }
 
     }

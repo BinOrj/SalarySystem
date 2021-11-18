@@ -19,7 +19,7 @@ namespace SalarySystem.Utilities
             }
             catch (Exception e)
             {
-                Console.WriteLine("Somyhing went wrong" + e.Message);
+                Console.WriteLine("Something went wrong" + e.Message);
                 return false;
             }
         }
@@ -27,10 +27,10 @@ namespace SalarySystem.Utilities
         public void AddNewEmployee(List<Employees> list)
         {
             Console.WriteLine("Enter info to add a new employee\n");
-            var username = EnterUsername();
-            var password = EnterPassword();
-            var firstname = EnterFirstName();
-            var surname = EnterSurname();
+            var username = EnterUsername("username");
+            var password = EnterUsername("password");
+            var firstname = EnterUsername("firstname");
+            var surname = EnterUsername("surname");
             var salary = EnterSalary();
             var role = EnterRole().ToString();
             var isAdmin = EnterIfAdminOrNot();

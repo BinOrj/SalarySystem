@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace SalarySystem.Utilities
 {
     public static class InputHelper
-    {    
+    {
 
         public static void DeleteInfo(Employees employee)
         {
@@ -19,12 +19,6 @@ namespace SalarySystem.Utilities
             return list[choice - 1];
         }
 
-        public static string EnterFirstName()
-        {
-            Console.Write("Enter firstname: ");
-            return Console.ReadLine();
-        }
-
         public static bool EnterIfAdminOrNot()
         {
             Console.Write("Enter [admin] if admin. Otherwise press enter: ");
@@ -36,12 +30,8 @@ namespace SalarySystem.Utilities
             return false;
         }
 
-        public static string EnterPassword()
-        {
-            Console.Write("Enter Password: ");
-            return Console.ReadLine();
-        }
 
+        // TODO: Felhantering
         public static Roles EnterRole()
         {
             ListOfRoles();
@@ -50,25 +40,26 @@ namespace SalarySystem.Utilities
 
             return (Roles)choice - 1;
         }
-        
+
         public static decimal EnterSalary()
         {
             Console.Write("Enter salary: ");
-            var sucees = decimal.TryParse(Console.ReadLine(),out decimal salary);
+            var sucees = decimal.TryParse(Console.ReadLine(), out decimal salary);
             return sucees ? salary : EnterSalary();
+        }      
+
+        public static string EnterUsername(string description)
+        {
+            Console.Write($"Enter {description}: ");
+            string input = Console.ReadLine();
+            while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
+            {
+                Console.Write($" *****- Empty input, try again -***** \nEnter {description}: ");
+                input = Console.ReadLine();
+            }
+            return input;
         }
 
-        public static string EnterSurname()
-        {
-            Console.Write("Enter surname: ");
-            return Console.ReadLine();
-        }
-
-        public static string EnterUsername()
-        {
-            Console.Write("Enter username: ");
-           return Console.ReadLine();
-        }
 
         public static void ListOfRoles()
         {

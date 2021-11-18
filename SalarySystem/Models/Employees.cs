@@ -4,10 +4,6 @@ namespace SalarySystem.Models
 {
     public class Employees : IAccount
     {
-        public Employees()
-        {
-        }
-
         public Employees(string userName, string password, string firstname, string surname, decimal salary, string role, bool isAdmin)
         {
             UserName = userName;

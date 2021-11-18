@@ -11,12 +11,9 @@ namespace SalarySystem.Controllers
         {
             EmployeeHelper helper = new();
             Console.WriteLine("Enter Username and Password to login\n");
-            Console.Write("Enter username: ");
-            string username = Console.ReadLine();
-            Console.Write("Enter Password: ");
-            string password = Console.ReadLine();
+            var credentials = InputHelper.AskForCredentials();
 
-            var employee = helper.CheckIfEmployeExists(username, password, DataStructure.EmployeesList);
+            var employee = helper.CheckIfEmployeExists(credentials[0], credentials[1], DataStructure.EmployeesList);
             var isAdmin = helper.IsEmployeAdmin(employee);
             helper.MenuDirection(isAdmin, employee);
         }

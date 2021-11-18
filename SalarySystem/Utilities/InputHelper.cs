@@ -5,8 +5,7 @@ using System.Collections.Generic;
 namespace SalarySystem.Utilities
 {
     public static class InputHelper
-    {
-        // Icke testbar behövs den?
+    {    
 
         public static void DeleteInfo(Employees employee)
         {

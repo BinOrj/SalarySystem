@@ -20,9 +20,12 @@ namespace SalarySystem.Controllers
                 {
                     helper.MenuDirection(employee);
                 }
-                Console.Clear();
-                Console.WriteLine($"Wrong crendentials, you got: {3 - counter} tries left");
-                counter++;
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Wrong crendentials, you got: {3 - counter} tries left");
+                    counter++;
+                }
             }
         }
     }

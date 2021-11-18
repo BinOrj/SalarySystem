@@ -29,7 +29,7 @@ namespace SalarySystem.Models
         
         public string GetUserInfo()
         {
-            return $"Name: {Firstname} {Surname}   Username: {UserName}   Password: {Password}";
-        }
+            return $" Name: {Firstname} {Surname}   Username: {UserName}   Password: {Password}";
+        }      
     }
 }

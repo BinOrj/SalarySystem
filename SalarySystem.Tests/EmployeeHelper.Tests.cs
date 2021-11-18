@@ -29,6 +29,30 @@ namespace SalarySystem.Tests
             Assert.IsTrue(actual);
         }
 
+
+        [Test]
+        public void CheckIfEmployeExists_CheckIfTheListContainsEmployee_ShoulReturnEmployee()
+        {
+            var expected = new Employees("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
+            _empList.Add(expected);
+
+            var actual = _empHelper.CheckIfEmployeExists("Test", "123", _empList);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void IsEmployeeAdmin_ChecksIfWmployeeIsAdmin_ShouldReturnTrue()
+        {
+            var excpected = new Employees("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
+            _empList.Add(excpected);
+
+            var actual = _empHelper.IsEmployeAdmin(excpected);
+
+            Assert.IsTrue(actual);
+        }
+
+
         [Test]
         public void EmployeeHelper_DeleteAccount_ShouldReturnTrue()
         {

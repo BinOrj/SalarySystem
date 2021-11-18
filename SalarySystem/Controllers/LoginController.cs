@@ -10,14 +10,19 @@ namespace SalarySystem.Controllers
         public void LogIn()
         {
             EmployeeHelper helper = new();
-            Console.WriteLine("Enter Username and Password to login\n");
-            var credentials = InputHelper.AskForCredentials();
-
-            var employee = helper.CheckIfEmployeExists(credentials[0], credentials[1], DataStructure.EmployeesList);
-            if (employee != null)
+            var counter = 1;
+            while (counter <= 3)
             {
-                
-                helper.MenuDirection(employee);
+                Console.WriteLine("Enter Username and Password to login\n");
+                var credentials = InputHelper.AskForCredentials();
+                var employee = helper.CheckIfEmployeExists(credentials[0], credentials[1], DataStructure.EmployeesList);
+                if (employee != null)
+                {
+                    helper.MenuDirection(employee);
+                }
+                Console.Clear();
+                Console.WriteLine($"Wrong crendentials, you got: {3 - counter} tries left");
+                counter++;
             }
         }
     }

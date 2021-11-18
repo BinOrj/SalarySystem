@@ -10,11 +10,9 @@ namespace SalarySystem.Controllers
         {
             Seeder.EmployeesSeeder();
             LoginController logIn = new();
-            while (true)
-            {
-                Console.Clear();
-                logIn.LogIn();
-            }
+            Console.Clear();
+            logIn.LogIn();
+
         }
     }
 }

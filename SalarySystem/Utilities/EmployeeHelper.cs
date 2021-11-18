@@ -74,7 +74,7 @@ namespace SalarySystem.Utilities
 
             if (credentials[0] == employee.UserName && credentials[1] == employee.Password)
             {
-                if (IsEmployeAdmin(employee))
+                if (employee.IsAdmin)
                 {
                     Console.WriteLine("Cant delete Admin!");
                 }
@@ -98,17 +98,17 @@ namespace SalarySystem.Utilities
             return DeleteAccount(credentials[0], credentials[1], employee, list);
         }
 
-        public bool IsEmployeAdmin(Employees employe)
-        {
-            return employe.IsAdmin;
-        }
+        //public bool IsEmployeAdmin(Employees employe)
+        //{
+        //    return employe.IsAdmin;
+        //}
 
-        public void MenuDirection(bool isAdmin, Employees employee)
+        public void MenuDirection(Employees employee)
         {
             EmployeeController userController = new();
             AdminController adminController = new();
 
-            if (isAdmin) adminController.AdminMenu(employee);
+            if (employee.IsAdmin) adminController.AdminMenu(employee);
             else userController.EmployeeMenu(employee);
         }
 

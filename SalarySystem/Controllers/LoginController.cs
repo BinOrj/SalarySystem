@@ -16,8 +16,8 @@ namespace SalarySystem.Controllers
             var employee = helper.CheckIfEmployeExists(credentials[0], credentials[1], DataStructure.EmployeesList);
             if (employee != null)
             {
-                var isAdmin = helper.IsEmployeAdmin(employee);
-                helper.MenuDirection(isAdmin, employee);
+                
+                helper.MenuDirection(employee);
             }
         }
     }

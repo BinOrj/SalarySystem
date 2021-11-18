@@ -47,7 +47,7 @@ namespace SalarySystem.Tests
             var excpected = new Employees("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
             _empList.Add(excpected);
 
-            var actual = _empHelper.IsEmployeAdmin(excpected);
+            var actual = excpected.IsAdmin;
 
             Assert.IsTrue(actual);
         }

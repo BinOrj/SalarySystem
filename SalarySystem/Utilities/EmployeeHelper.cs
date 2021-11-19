@@ -2,12 +2,14 @@
 using SalarySystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static SalarySystem.Utilities.InputHelper;
 
 namespace SalarySystem.Utilities
 {
     public class EmployeeHelper
     {
+
         public bool AddingNewEmployee(string username, string password, string firstname, string surname, decimal salary, string role, bool isAdmin, List<Employees> list)
         {
             try
@@ -19,7 +21,7 @@ namespace SalarySystem.Utilities
             }
             catch (Exception e)
             {
-                Console.WriteLine("Somyhing went wrong" + e.Message);
+                Console.WriteLine("Something went wrong" + e.Message);
                 return false;
             }
         }
@@ -27,10 +29,10 @@ namespace SalarySystem.Utilities
         public void AddNewEmployee(List<Employees> list)
         {
             Console.WriteLine("Enter info to add a new employee\n");
-            var username = EnterUsername();
-            var password = EnterPassword();
-            var firstname = EnterFirstName();
-            var surname = EnterSurname();
+            var username = PromptUserForInput("username");
+            var password = PromptUserForInput("password");
+            var firstname = PromptUserForInput("firstname");
+            var surname = PromptUserForInput("surname");
             var salary = EnterSalary();
             var role = EnterRole().ToString();
             var isAdmin = EnterIfAdminOrNot();
@@ -65,16 +67,15 @@ namespace SalarySystem.Utilities
 
         public void DeleteEmployeesAccount(List<Employees> list)
         {
+            Console.WriteLine("Here is the list of employees");
             ShowListOfEmployees(list);
-            Console.Write("Enter number of wich employee you want to delete: ");
-            var employee = EmployeeToDelete(list);
 
-            DeleteInfo(employee);
             var credentials = AskForCredentials();
+            var employee = list.Where(u => u.UserName == credentials[0] && u.Password == credentials[1]).FirstOrDefault();
+            if (employee != null)
 
-            if (credentials[0] == employee.UserName && credentials[1] == employee.Password)
             {
-                if (IsEmployeAdmin(employee))
+                if (employee.IsAdmin)
                 {
                     Console.WriteLine("Cant delete Admin!");
                 }
@@ -86,29 +87,26 @@ namespace SalarySystem.Utilities
             }
             else
             {
-                Console.WriteLine("Wrong Username or Password");
+                Console.WriteLine("No match");
             }
         }
 
         public bool DeleteMyAccount(Employees employee, List<Employees> list)
         {
-            DeleteInfo(employee);        
+
+            DeleteInfo(employee);
+
             var credentials = AskForCredentials();
 
             return DeleteAccount(credentials[0], credentials[1], employee, list);
         }
 
-        public bool IsEmployeAdmin(Employees employe)
-        {
-            return employe.IsAdmin;
-        }
-
-        public void MenuDirection(bool isAdmin, Employees employee)
+        public void MenuDirection(Employees employee)
         {
             EmployeeController userController = new();
             AdminController adminController = new();
 
-            if (isAdmin) adminController.AdminMenu(employee);
+            if (employee.IsAdmin) adminController.AdminMenu(employee);
             else userController.EmployeeMenu(employee);
         }
 
@@ -120,12 +118,10 @@ namespace SalarySystem.Utilities
         }
 
         public void ShowListOfEmployees(List<Employees> list)
-        {
-            int counter = 1;
+        {            
             foreach (Employees employee in list)
             {
-                Console.WriteLine($"{counter}. Name: {employee.Firstname} {employee.Surname}   Username: {employee.UserName}   Password: {employee.Password}");
-                counter++;
+                Console.WriteLine(employee.GetUserInfoAdmin());                
             }
         }
     }

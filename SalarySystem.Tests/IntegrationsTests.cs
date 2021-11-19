@@ -10,35 +10,40 @@ namespace SalarySystem.Tests
         private EmployeeHelper _empHelper;
         private List<Employees> _empList;
 
+        private Employees _admin;
+        private Employees _user;
+
+
         [SetUp]
         public void Setup()
         {
+
             _empHelper = new();
             _empList = new();
+            _admin = new Employees("Admin", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
+            _user = new Employees("User", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), false);
+            _empList.Add(_admin);
+            _empList.Add(_user);
         }
 
         [Test]
-        public void AddingNewEmployee_InstanciateNewEmployee_ReturnTrue()
+        public void Intergration_LogIn_Admin()
         {
-            var actual = _empHelper.AddingNewEmployee("Apa", "123", "Donkey", "Kong", 25000, Roles.Tester.ToString(), false, _empList);
-            Assert.IsTrue(actual);
+            Assert.AreEqual(2, _empList.Count);
+            Assert.AreEqual(_empHelper.CheckIfEmployeExists("Admin", "123", _empList), _admin);
+            Assert.IsTrue(_empHelper.DeleteAccount("User", "123", _user, _empList));
+            Assert.IsFalse(_empHelper.DeleteAccount("User", "123", _admin, _empList));
+            Assert.AreEqual(1, _empList.Count);
         }
 
         [Test]
-        public void Test5_Demo_Intergration_LogIn()
+        public void Intergration_LogIn_User()
         {
-
-            EmployeeHelper helper = new();
-            List<Employees> employeesList = new();
-
-            Employees testEmploye = new("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
-            employeesList.Add(testEmploye);
-
-            var existingEmploye = helper.CheckIfEmployeExists("Test", "123", employeesList);
-            var isAdmin = helper.IsEmployeAdmin(existingEmploye);
-
-            Assert.AreEqual(existingEmploye, testEmploye);
-            Assert.IsTrue(isAdmin);
+            Assert.AreEqual(2, _empList.Count);
+            Assert.AreEqual(_empHelper.CheckIfEmployeExists("User", "123", _empList), _user);
+            Assert.IsFalse(_empHelper.DeleteAccount("User", "133", _user, _empList));
+            Assert.IsTrue(_empHelper.DeleteAccount("User", "123", _user, _empList));
+            Assert.AreEqual(1, _empList.Count);
         }
 
     }

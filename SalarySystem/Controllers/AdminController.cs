@@ -13,20 +13,14 @@ namespace SalarySystem.Controllers
             bool loop = true;
             while (loop)
             {
-                Console.Clear();
-                Console.WriteLine("1. Show info");
-                Console.WriteLine("2. Show info about all employees");
-                Console.WriteLine("3. Add employee");
-                Console.WriteLine("4. Delete employee");
-                Console.WriteLine("5. Logout");
-                Console.Write("Choice: ");
+                MenuView();
                 string input = Console.ReadLine();
-                if(int.TryParse(input, out int choice))
+                if (int.TryParse(input, out int choice))
                 {
                     switch (choice)
                     {
                         case 1:
-                            helper.ShowInfoAboutThisEmployee(employee);
+                            Console.WriteLine(employee.GetUserInfo());
                             break;
 
                         case 2:
@@ -53,11 +47,22 @@ namespace SalarySystem.Controllers
                 else
                 {
                     Console.WriteLine("Wrong input!");
-                   
+
                 }
                 Console.ReadKey();
 
             }
+        }
+
+        private static void MenuView()
+        {
+            Console.Clear();
+            Console.WriteLine("1. Show info");
+            Console.WriteLine("2. Show info about all employees");
+            Console.WriteLine("3. Add employee");
+            Console.WriteLine("4. Delete employee");
+            Console.WriteLine("5. Logout");
+            Console.Write("Choice: ");
         }
     }
 }

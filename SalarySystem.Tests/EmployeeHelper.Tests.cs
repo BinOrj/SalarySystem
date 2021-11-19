@@ -25,7 +25,10 @@ namespace SalarySystem.Tests
         [Test]
         public void AddingNewEmployee_InstanciateNewEmployee_ReturnTrue()
         {
+            var init = _empList.Count;
             var actual = _empHelper.AddingNewEmployee("Apa", "123", "Donkey", "Kong", 25000, Roles.Tester.ToString(), false, _empList);
+            var afterAdd = _empList.Count;
+            Assert.AreEqual(init +1, afterAdd);
             Assert.IsTrue(actual);
         }
 
@@ -47,7 +50,9 @@ namespace SalarySystem.Tests
             var excpected = new Employees("Test", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
             _empList.Add(excpected);
 
-            var actual = _empHelper.IsEmployeAdmin(excpected);
+
+            var actual = excpected.IsAdmin;
+
 
             Assert.IsTrue(actual);
         }

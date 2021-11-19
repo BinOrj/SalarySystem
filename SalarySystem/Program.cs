@@ -8,8 +8,9 @@ namespace SalarySystem
     {
         static void Main(string[] args)
         {
-            ProgramFLow pf = new();
-            pf.Start();
+            DataStructure.EmployeesSeeder();
+            var loginController = new LoginController(); 
+            loginController.Start();
         }
     }
 }

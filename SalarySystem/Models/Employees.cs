@@ -4,10 +4,6 @@ namespace SalarySystem.Models
 {
     public class Employees : IAccount
     {
-        public Employees()
-        {
-        }
-
         public Employees(string userName, string password, string firstname, string surname, decimal salary, string role, bool isAdmin)
         {
             UserName = userName;
@@ -26,5 +22,15 @@ namespace SalarySystem.Models
         public decimal Salary { get; set; }
         public string Role { get; set; }
         public bool IsAdmin { get; set; }
+        
+        public string GetUserInfo()
+        {
+            return $" Name: {Firstname} {Surname}   Salary: {Salary}   Role: {Role}";
+        }
+
+        public string GetUserInfoAdmin()
+        {
+            return $" Name: {Firstname} {Surname}   Username: {UserName}   Password: {Password}";
+        }
     }
 }

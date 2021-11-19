@@ -6,25 +6,13 @@ namespace SalarySystem.Utilities
 {
     public static class InputHelper
     {
-        // Icke testbar behövs den?
+
 
         public static void DeleteInfo(Employees employee)
         {
             Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
             Console.WriteLine("Enter username and password to delete this user");
-        }
-
-        public static Employees EmployeeToDelete(List<Employees> list)
-        {
-            int choice = Convert.ToInt32(Console.ReadLine());
-            return list[choice - 1];
-        }
-
-        public static string EnterFirstName()
-        {
-            Console.Write("Enter firstname: ");
-            return Console.ReadLine();
-        }
+        }       
 
         public static bool EnterIfAdminOrNot()
         {
@@ -36,39 +24,37 @@ namespace SalarySystem.Utilities
             }
             return false;
         }
-
-        public static string EnterPassword()
-        {
-            Console.Write("Enter Password: ");
-            return Console.ReadLine();
-        }
-
+        
         public static Roles EnterRole()
         {
             ListOfRoles();
             Console.Write("Enter the number of the role: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-
-            return (Roles)choice - 1;
+            bool success = int.TryParse(Console.ReadLine(),out int choice);
+            if (success && choice < 0 || choice > 4) return (Roles)choice - 1;
+            return Roles.Programmer;
         }
         
         public static decimal EnterSalary()
         {
             Console.Write("Enter salary: ");
-            var sucees = decimal.TryParse(Console.ReadLine(),out decimal salary);
+
+            var sucees = decimal.TryParse(Console.ReadLine(), out decimal salary);
             return sucees ? salary : EnterSalary();
-        }
+        }      
 
-        public static string EnterSurname()
-        {
-            Console.Write("Enter surname: ");
-            return Console.ReadLine();
-        }
 
-        public static string EnterUsername()
+        public static string PromptUserForInput(string description)
         {
-            Console.Write("Enter username: ");
-           return Console.ReadLine();
+
+            Console.Write($"Enter {description}: ");
+            string input = Console.ReadLine();
+            while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
+            {
+                Console.Write($" *****- Empty input, try again -***** \nEnter {description}: ");
+                input = Console.ReadLine();
+            }
+            return input;
+
         }
 
         public static void ListOfRoles()
@@ -86,7 +72,9 @@ namespace SalarySystem.Utilities
             var creds = new string[2];
             for (int i = 0; i <= 1; i++)
             {
-                Console.WriteLine(i == 0 ? "Enter Username: " : "Enter Password: ");
+
+                Console.Write(i == 0 ? "Enter Username: " : "Enter Password: ");
+
                 creds[i] = Console.ReadLine();
             }
             return creds;

@@ -25,7 +25,7 @@ namespace SalarySystem.Controllers
                     switch (choice)
                     {
                         case 1:
-                            helper.ShowInfoAboutThisEmployee(employee);
+                            Console.WriteLine(employee.GetUserInfo());
                             break;
 
                         case 2:

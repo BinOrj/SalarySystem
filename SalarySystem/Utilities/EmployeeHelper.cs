@@ -96,12 +96,7 @@ namespace SalarySystem.Utilities
             var credentials = AskForCredentials();
 
             return DeleteAccount(credentials[0], credentials[1], employee, list);
-        }
-
-        //public bool IsEmployeAdmin(Employees employe)
-        //{
-        //    return employe.IsAdmin;
-        //}
+        }      
 
         public void MenuDirection(Employees employee)
         {

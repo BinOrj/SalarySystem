@@ -29,16 +29,14 @@ namespace SalarySystem.Utilities
             }
             return false;
         }
-
-
-        // TODO: Felhantering
+        
         public static Roles EnterRole()
         {
             ListOfRoles();
             Console.Write("Enter the number of the role: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-
-            return (Roles)choice - 1;
+            bool success = int.TryParse(Console.ReadLine(),out int choice);
+            if (success && choice < 0 || choice > 4) return (Roles)choice - 1;
+            return Roles.Programmer;
         }
 
         public static decimal EnterSalary()
@@ -59,7 +57,6 @@ namespace SalarySystem.Utilities
             }
             return input;
         }
-
 
         public static void ListOfRoles()
         {

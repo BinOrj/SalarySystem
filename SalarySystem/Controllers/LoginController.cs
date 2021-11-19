@@ -7,6 +7,11 @@ namespace SalarySystem.Controllers
 {
     public class LoginController
     {
+        public void Start()
+        {
+            LogIn();
+        }
+
         public void LogIn()
         {
             EmployeeHelper helper = new();
@@ -18,7 +23,7 @@ namespace SalarySystem.Controllers
                 var employee = helper.CheckIfEmployeExists(credentials[0], credentials[1], DataStructure.EmployeesList);
                 if (employee != null)
                 {
-                    helper.MenuDirection(employee);
+                    helper.MenuDirection(employee);                   
                 }
                 else
                 {

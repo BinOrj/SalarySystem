@@ -6,13 +6,6 @@ namespace SalarySystem.Controllers
 {
     public class ProgramFLow
     {
-        public void Start()
-        {
-            Seeder.EmployeesSeeder();
-            LoginController logIn = new();
-            Console.Clear();
-            logIn.LogIn();
-
-        }
+        
     }
 }

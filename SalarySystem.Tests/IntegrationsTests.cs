@@ -13,11 +13,9 @@ namespace SalarySystem.Tests
         private Employees _admin;
         private Employees _user;
 
-
         [SetUp]
         public void Setup()
         {
-
             _empHelper = new();
             _empList = new();
             _admin = new Employees("Admin", "123", "Emil", "Örjes", 30000, Roles.Programmer.ToString(), true);
@@ -45,6 +43,5 @@ namespace SalarySystem.Tests
             Assert.IsTrue(_empHelper.DeleteAccount("User", "123", _user, _empList));
             Assert.AreEqual(1, _empList.Count);
         }
-
     }
 }

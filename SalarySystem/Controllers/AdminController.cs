@@ -30,9 +30,11 @@ namespace SalarySystem.Controllers
                         case 3:
                             helper.AddNewEmployee(DataStructure.EmployeesList);
                             break;
+
                         case 4:
                             helper.DeleteEmployeesAccount(DataStructure.EmployeesList);
                             break;
+
                         case 5:
                             Console.WriteLine("Logging out");
                             loop = false;
@@ -47,10 +49,8 @@ namespace SalarySystem.Controllers
                 else
                 {
                     Console.WriteLine("Wrong input!");
-
                 }
                 Console.ReadKey();
-
             }
         }
 

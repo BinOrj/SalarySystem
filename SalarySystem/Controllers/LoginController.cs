@@ -1,5 +1,4 @@
 ﻿using SalarySystem.Data;
-using SalarySystem.Models;
 using SalarySystem.Utilities;
 using System;
 

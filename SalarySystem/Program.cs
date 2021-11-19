@@ -8,7 +8,7 @@ namespace SalarySystem
     {
         static void Main(string[] args)
         {
-            Seeder.EmployeesSeeder();
+            DataStructure.EmployeesSeeder();
             var loginController = new LoginController(); 
             loginController.Start();
         }

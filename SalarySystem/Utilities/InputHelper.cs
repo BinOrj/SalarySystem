@@ -11,13 +11,7 @@ namespace SalarySystem.Utilities
         {
             Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
             Console.WriteLine("Enter username and password to delete this user");
-        }
-
-        public static Employees EmployeeToDelete(List<Employees> list)
-        {
-            int choice = Convert.ToInt32(Console.ReadLine());
-            return list[choice - 1];
-        }
+        }       
 
         public static bool EnterIfAdminOrNot()
         {
@@ -46,7 +40,7 @@ namespace SalarySystem.Utilities
             return sucees ? salary : EnterSalary();
         }      
 
-        public static string EnterUsername(string description)
+        public static string PromptUserForInput(string description)
         {
             Console.Write($"Enter {description}: ");
             string input = Console.ReadLine();

@@ -15,6 +15,7 @@ namespace SalarySystem.Controllers
         public void LogIn()
         {
             EmployeeHelper helper = new();
+
             var counter = 1;
             while (counter <= 3)
             {
@@ -32,6 +33,7 @@ namespace SalarySystem.Controllers
                     counter++;
                 }
             }
+
         }
     }
 }

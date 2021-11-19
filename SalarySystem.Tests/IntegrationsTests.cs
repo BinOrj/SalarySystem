@@ -9,8 +9,10 @@ namespace SalarySystem.Tests
     {
         private EmployeeHelper _empHelper;
         private List<Employees> _empList;
+
         private Employees _admin;
         private Employees _user;
+
 
         [SetUp]
         public void Setup()
@@ -43,5 +45,6 @@ namespace SalarySystem.Tests
             Assert.IsTrue(_empHelper.DeleteAccount("User", "123", _user, _empList));
             Assert.AreEqual(1, _empList.Count);
         }
+
     }
 }

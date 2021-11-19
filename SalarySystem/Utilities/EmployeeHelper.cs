@@ -73,6 +73,7 @@ namespace SalarySystem.Utilities
             var credentials = AskForCredentials();
             var employee = list.Where(u => u.UserName == credentials[0] && u.Password == credentials[1]).FirstOrDefault();
             if (employee != null)
+
             {
                 if (employee.IsAdmin)
                 {
@@ -92,7 +93,9 @@ namespace SalarySystem.Utilities
 
         public bool DeleteMyAccount(Employees employee, List<Employees> list)
         {
+
             DeleteInfo(employee);
+
             var credentials = AskForCredentials();
 
             return DeleteAccount(credentials[0], credentials[1], employee, list);

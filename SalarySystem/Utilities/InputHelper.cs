@@ -7,6 +7,7 @@ namespace SalarySystem.Utilities
     public static class InputHelper
     {
 
+
         public static void DeleteInfo(Employees employee)
         {
             Console.WriteLine($"\nUsername: {employee.UserName}   Password: {employee.Password}");
@@ -32,16 +33,19 @@ namespace SalarySystem.Utilities
             if (success && choice < 0 || choice > 4) return (Roles)choice - 1;
             return Roles.Programmer;
         }
-
+        
         public static decimal EnterSalary()
         {
             Console.Write("Enter salary: ");
+
             var sucees = decimal.TryParse(Console.ReadLine(), out decimal salary);
             return sucees ? salary : EnterSalary();
         }      
 
+
         public static string PromptUserForInput(string description)
         {
+
             Console.Write($"Enter {description}: ");
             string input = Console.ReadLine();
             while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
@@ -50,6 +54,7 @@ namespace SalarySystem.Utilities
                 input = Console.ReadLine();
             }
             return input;
+
         }
 
         public static void ListOfRoles()
@@ -67,7 +72,9 @@ namespace SalarySystem.Utilities
             var creds = new string[2];
             for (int i = 0; i <= 1; i++)
             {
+
                 Console.Write(i == 0 ? "Enter Username: " : "Enter Password: ");
+
                 creds[i] = Console.ReadLine();
             }
             return creds;

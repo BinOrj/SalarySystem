@@ -2,4 +2,6 @@
 
 # School Project under development
 
+![WorkFlowDiagram.drawio](WorkFlowDiagram.drawio.png)
+
 # SalarySystem
